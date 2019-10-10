@@ -1,0 +1,4 @@
+﻿  Source.cpp
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(8,1): warning C4326:  возвращаемый тип "main" должен быть "int", а не "void"
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(13,17): warning C4244:  аргумент: преобразование "double" в "int", возможна потеря данных
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(17,32): error C2059:  синтаксическая ошибка: <
