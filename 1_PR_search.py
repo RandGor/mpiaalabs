@@ -54,16 +54,16 @@ def duplicate_test(a):
 
 repeats = 101
 itemsfind = 60
-maxpower = 6
+maxpower = 7
 for j in range (1,maxpower):
     l = 0
     bi = 0
     d = 0
     dd = 0
+    h = 10**j
     for i in range (1,repeats):
-        h = 10**j
-        a = np.random.randint(0, 10000000, h).tolist()
-        b = np.random.randint(0, 10000000, itemsfind).tolist()
+        a = np.random.randint(0, 100, h).tolist()
+        b = np.random.randint(0, 100, itemsfind).tolist()
         c = []
         for m in range (0,itemsfind):
             c.append(m*2**m)
@@ -76,3 +76,4 @@ for j in range (1,maxpower):
     print("Time for", repeats-1, "repeats of duplicate search in",itemsfind,"=","{:e}".format(d/(repeats-1)))
     print("Time for", repeats-1, "repeats of duplicate different search in",itemsfind,"=","{:e}".format(dd/(repeats-1)))
     print()
+input()
