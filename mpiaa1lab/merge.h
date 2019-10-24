@@ -49,15 +49,15 @@ void Input(vector<Info>& Mas, int count)
 }
 
 
-
 template <keys T>
 void merge(vector<Info>& vArray, vector<Info>& vTemp, int head, int middle, int tail)
 {
+	Comparer<T> c;
 	int tmp = 0, lower = head, upper = middle + 1;
 
 	while (lower <= middle && upper <= tail)
 	{
-		if (/*Comparer<T>(vArray[upper], vArray[lower])) {*/(T == YEAR ? vArray[upper].Birth > vArray[lower].Birth : strcmp(vArray[upper].Name, vArray[lower].Name) > 0))
+		if (c(vArray[upper], vArray[lower]))
 		{
 			vTemp[tmp++] = vArray[lower++];
 		}
@@ -81,7 +81,7 @@ void merge(vector<Info>& vArray, vector<Info>& vTemp, int head, int middle, int 
 }
 
 template <keys T>
-inline void merge_sort_helper(vector<Info>& vArray, vector<Info>& vTemp, int head, int tail)
+void merge_sort_helper(vector<Info>& vArray, vector<Info>& vTemp, int head, int tail)
 {
 	if (head == tail)
 	{
@@ -115,14 +115,9 @@ void Print(const vector<Info> Mas)
 template<keys T>
 bool isSorted(vector<Info> Mas)
 {
+	Comparer<T> c;
 	for (int i = 0; i < Mas.size() - 1; i++)
-	{
-		if (T == YEAR)
-			if (Mas[i].Birth < Mas[i + 1].Birth)
-				return false;
-			else if (strcmp(Mas[i].Name, Mas[i + 1].Name) < 0)
-				return false;
-
-	}
+		if (c(Mas[i],Mas[i + 1]))
+			return false;
 	return true;
 }
