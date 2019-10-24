@@ -43,3 +43,4 @@ for j in range (1,maxpower):
     print("Time for", repeats-1, "repeats of internal sort of",itemsfind,"elements in",h,"=","{:e}".format(inter/(repeats-1)))
     print("Time for", repeats-1, "repeats of counter sort of",itemsfind,"elements in",h,"=","{:e}".format(counter/(repeats-1)))
     print()
+input()
