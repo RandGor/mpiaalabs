@@ -8,8 +8,6 @@
 #include <algorithm>
 using namespace std;
 
-const int N_MAX = 26;
-
 struct Info
 {
 	int Birth;
@@ -27,6 +25,12 @@ void AddPerson(vector<Info>& Mas, Info temp)
 	Mas.push_back(temp);
 }
 
+template <keys T>
+struct Comparer {
+	bool operator ()(const Info &m1, const Info &m2) const {
+		return (T == YEAR ? m1.Birth > m2.Birth : strcmp(m1.Name, m2.Name) > 0);
+	}
+};
 
 void Input(vector<Info>& Mas, int count)
 {
@@ -47,13 +51,13 @@ void Input(vector<Info>& Mas, int count)
 
 
 template <keys T>
-inline void merge(vector<Info>& vArray, vector<Info>& vTemp, int head, int middle, int tail)
+void merge(vector<Info>& vArray, vector<Info>& vTemp, int head, int middle, int tail)
 {
 	int tmp = 0, lower = head, upper = middle + 1;
 
 	while (lower <= middle && upper <= tail)
 	{
-		if ((T == YEAR ? vArray[upper].Birth > vArray[lower].Birth : strcmp(vArray[upper].Name, vArray[lower].Name) > 0))
+		if (/*Comparer<T>(vArray[upper], vArray[lower])) {*/(T == YEAR ? vArray[upper].Birth > vArray[lower].Birth : strcmp(vArray[upper].Name, vArray[lower].Name) > 0))
 		{
 			vTemp[tmp++] = vArray[lower++];
 		}
