@@ -29,5 +29,6 @@ void main()
 		printf("2)N: %.0f,\t time: %.5f sec\n\n", pow(rows, i), time1);
 
 	}
+
 	_getch();
 }
