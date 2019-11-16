@@ -1,5 +1,4 @@
 #include "merge.h"
-#include "catch.hpp"
 #include <chrono>
 #include <conio.h>
 

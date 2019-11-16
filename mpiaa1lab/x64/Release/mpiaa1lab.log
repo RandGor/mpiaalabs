@@ -1,0 +1,18 @@
+﻿  Source.cpp
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(10,1): warning C4326:  возвращаемый тип "main" должен быть "int", а не "void"
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(26,17): warning C4244:  аргумент: преобразование "double" в "int", возможна потеря данных
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\merge.h(103,1): warning C4267:  аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(18): message :  выполняется компиляция ссылки на экземпляр шаблон функции "void MergeSort<NAME>(std::vector<Info,std::allocator<_Ty>> &)"
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(18): message :         with
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(18): message :         [
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(18): message :             _Ty=Info
+D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\Source.cpp(18): message :         ]
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\chrono(595): message :  выполняется компиляция ссылки на экземпляр класс шаблон функции "std::chrono::duration<double,std::ratio<1,1>>"
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\chrono(172): message :  выполняется компиляция ссылки на экземпляр класс шаблон функции "std::chrono::duration<__int64,std::nano>"
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\chrono(574): message :  выполняется компиляция ссылки на экземпляр класс шаблон функции "std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>"
+  Создание кода
+  110 of 264 functions (41.7%) were compiled, the rest were copied from previous compilation.
+    5 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  mpiaa1lab.vcxproj -> D:\Users\dom2\source\repos\mpiaa1lab\x64\Release\mpiaa1lab.exe
