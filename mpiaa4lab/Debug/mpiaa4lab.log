@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\admin\source\repos\mpiaa4lab\mpiaa4lab\main.cpp(61): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  mpiaa4lab.vcxproj -> C:\Users\admin\source\repos\mpiaa4lab\Debug\mpiaa4lab.exe
