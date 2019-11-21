@@ -40,16 +40,12 @@ void measure(int size) {
 	double cc_time = t.getTime();
 
 	t.start();
-	const int repeats = 10;
+	const int repeats = 1;
 	for (int i = 0; i < repeats; i++) {
-		path_exists(g, rand() % size, rand() % size);
-		/*for (int j = 0; j < size - 1; j++)
-		{
-			for (int k = 0; k < j; k++)
-			{
-				path_exists(g, j, k); //только 2 рандомные вершины
-			}
-		}*/
+		int a1 = rand() % size;
+		int a2 = rand() % size;
+		printf_s("_%d %d %d\n",size,a1,a2);
+		path_exists(g, a1, a2);
 	}
 	double sp_time = t.getTime() / repeats;
 
@@ -57,11 +53,10 @@ void measure(int size) {
 		size,sp_time);
 }
 
-int main() {
-	for (int i = 1; i < 6; i++) {
+int main(int argc, char* argv[]) {
+	int result = Catch::Session().run(argc, argv);
+	for (int i = 1; i < 7; i++) {
 		measure(pow(10, i));
 	}
 	return 0;
-
-
 }

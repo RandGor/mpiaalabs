@@ -17,8 +17,7 @@ bool path_exists(const Graph &graph, int start_vertex, int end_vertex) {
 			if (current_vertex == end_vertex)
 				return true;
 			current_list = graph.get_adjacent_vertices(current_vertex);
-			for (int i = 0; i < current_list.size(); i++)
-			{
+			for (int i = 0; i < current_list.size(); i++) {
 				is = false;
 				for (int j = 0; j < list.size(); j++)
 					if (list[j] == current_list[i])
