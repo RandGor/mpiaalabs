@@ -1,5 +1,34 @@
 #include "graph.h"
 
+void Graph::read_from_file(const char* chars) {
+	clear();
+	std::ifstream in(chars);
+	if (!in)
+		return;
+
+	int a, b;
+
+	while (!in.eof()) {
+		in >> a >> b;
+		add_arc(a, b);
+	}
+	in.close();
+}
+
+Graph Graph::get_transponated() {
+	Graph gr;
+	for (const auto& p : vertices) {
+		for (int v : p.second) {
+			gr.add_arc(v, p.first);
+		}
+	}
+	return gr;
+}
+
+void Graph::clear(){
+	vertices.clear();
+}
+
 void Graph::add_vertex(int vertex) {
     if (!has_vertex(vertex)) {
         vertices[vertex] = std::set<int>();
@@ -11,6 +40,7 @@ void Graph::add_arc(int start_vertex, int end_vertex) {
     add_vertex(end_vertex);
     vertices[start_vertex].insert(end_vertex);
 }
+
 
 std::vector<int> Graph::get_vertices() const {
     std::vector<int> result;
@@ -40,17 +70,7 @@ bool Graph::has_arc(int start_vertex, int end_vertex) const {
     return (it->second.find(end_vertex) != it->second.end());
 }
 
-void Graph::assign(int c) {
-	size = c;
-	for (int i = 0; i < c; i++) {
-		add_vertex(i);
-	}
-}
 
 std::map<int, std::set<int>> Graph::get_graph() const {
 	return vertices;
-}
-
-int Graph::get_size() const {
-	return size;
 }

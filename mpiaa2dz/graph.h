@@ -3,12 +3,23 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 /**
  * Oriented graph.
 **/
 class Graph {
 public:
+	/// Reads file and fills graph
+	void read_from_file(const char* chars);
+
+	/// Gives transponated graph
+	Graph get_transponated();
+
+	/// Clears whole graph.
+	void clear();
+
     /// Adds single vertex to the graph.
     void add_vertex(int vertex);
 
@@ -27,13 +38,9 @@ public:
     /// Returns true if vertices exist and have an arc between them, false otherwise.
     bool has_arc(int start_vertex, int end_vertex) const;
 
-	void assign(int c);
-
+	/// Gives verticles
 	std::map<int, std::set<int>> get_graph() const;
-
-	int get_size() const;
 
 private:
     std::map<int, std::set<int>> vertices;
-    int size = 0;
 };

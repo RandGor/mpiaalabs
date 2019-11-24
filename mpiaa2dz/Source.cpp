@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_RUNNER
-#include "library.h"
 #include "catch.hpp"
+#include "library.h"
 
 typedef std::chrono::high_resolution_clock hrc;
 
@@ -22,110 +22,61 @@ namespace {
 	};
 }
 
-vector<int> findKSS(Graph g) {
-	vector<int> ans;
-
-	// Рёбра
+Graph gen_random_graph(int nodes, int arcs) {
+	Graph g;
+	int i = 0;
 	int a, b;
-
-
-	while (!in.eof()) {
-		in >> a >> b;
+	for (int i = 0; i < nodes; i++)
+		g.add_vertex(i);
+	
+	while (arcs > i)
+	{
+		a = rand() % nodes;
+		b = rand() % nodes;
+		if (g.has_arc(a, b))
+			continue;
 		g.add_arc(a, b);
-		gr.add_arc(b, a);
+		i++;
 	}
-
-	for (const auto& p : g.get_graph()) {
-		used[p.first] = false;
-	}
-	for (const auto& p : gr.get_graph()) {
-		used[p.first] = false;
-	}
-
-	for (const auto& p : g.get_graph()) {
-		if (!used[p.first])
-			dfs1(p.first);
-	}
-
-
-	for (const auto& p : g.get_graph()) {
-		used[p.first] = false;
-	}
-	for (const auto& p : gr.get_graph()) {
-		used[p.first] = false;
-	}
-
-
-	std::reverse(order.begin(), order.end());
-	for (int p : order) {
-		int v = p;
-		if (!used[v]) {
-			dfs2(v);
-			if (component.size() > 1) {
-				ans = component;
-			}
-			component.clear();
-		}
-	}
-
-	return ans;
+	return g;
 }
 
-int main()
+void measure(int nodes, int arcs) {
+	Graph g = gen_random_graph(nodes, arcs);
+	
+	Timer t;
+
+	t.start();
+	double cc_time = t.getTime();
+
+	t.start();
+	const int repeats = 1;
+	for (int i = 0; i < repeats; i++) {
+		find_SCC(g);
+	}
+	double sp_time = t.getTime() / repeats;
+
+	printf("%d\t%d\t%10.5f\n", nodes, arcs, sp_time);
+}
+
+int main(int argc, char* argv[])
 {
-	ifstream in("input.txt");
-	// если файл не открылся
-	if (!in)
-	{
-		return 0;
-	}
+	Graph graph;
+	vector<vector<int>> ans;
 
-	// Рёбра
-	int a, b;
+	// Tests
+	Catch::Session().run(argc, argv);
 
+	// Tests in files
+	graph.read_from_file("input.txt");
+	ans = find_SCC(graph);
+	result_to_file(ans, "output.txt");
 
-	while (!in.eof()) {
-		in >> a >> b;
-		g.add_arc(a, b);
-		gr.add_arc(b, a);
+	// Time tests for large graphs
+	printf("Nodes\tEnges\tTime\n");
+	for (int i = 1; i <= 4; i++) {
+		measure(pow(10, i), 3*pow(10, i));
 	}
-
-	for (const auto &p : g.get_graph()) {
-		used[p.first] = false;
-	}
-	for (const auto &p : gr.get_graph()) {
-		used[p.first] = false;
-	}
-
-	for (const auto &p : g.get_graph()) {
-		if (!used[p.first])
-			dfs1(p.first);
-	}
-
-
-	for (const auto &p : g.get_graph()) {
-		used[p.first] = false;
-	}
-	for (const auto &p : gr.get_graph()) {
-		used[p.first] = false;
-	}
-	ofstream fout("output.txt");
-
-	std::reverse(order.begin(), order.end());
-	for (int p : order) {
-		int v = p;
-		if (!used[v]) {
-			dfs2(v);
-			if (component.size() > 1) {
-				for (size_t j = 0; j < component.size(); j++)
-					fout << component[j] << " ";
-				fout << endl;
-			}
-			component.clear();
-		}
-	}
-	in.close();
-	fout.close();
 
 	return 1;
 }
