@@ -1,20 +1,16 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <conio.h>
-#include <locale.h>
+
+#include "catch.hpp"
 #include "graph.h"
+#include "timer.h"
+#include "kosaraju.h"
+#include <conio.h>
+
 using namespace std;
 
+Graph gen_random_graph(int nodes, int arcs);
 
-// функция поиска КСС - Strongly Connected Component
-vector<vector<int>> find_SCC(Graph graph);
-
-// функция обхода в глубину
-void dfs1(int v);
-
-// функция обхода в глубину по транспонированному графу и поиск КСС
-void dfs2(int v);
+void measure(int nodes, int arcs);
 
 // функция для печати результата в файл
 void result_to_file(vector<vector<int>> ans, const char* chars);

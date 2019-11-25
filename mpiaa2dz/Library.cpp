@@ -1,102 +1,42 @@
 #pragma once
+
 #include "Library.h"
 
 
-// граф и транспонированный граф
-Graph g, gr;
+Graph gen_random_graph(int nodes, int arcs) {
+	Graph g;
+	int i = 0;
+	int a, b;
+	for (int i = 0; i < nodes; i++)
+		g.add_vertex(i);
 
-map<int, bool> used;
-// упорядоченный список и список КСС
-vector<int> order, component;
-
-// функция поиска КСС
-vector<vector<int>> find_SCC(Graph graph) {
-	vector<vector<int>> ans;
-
-	// Рёбра
-
-	used.clear();
-	g.clear();
-	gr.clear();
-	order.clear();
-	component.clear();
-
-	g = graph;
-	gr = graph.get_transponated();
-
-
-	for (const auto& p : g.get_graph())
-		used[p.first] = false;
-
-	for (const auto& p : gr.get_graph())
-		used[p.first] = false;
-
-
-	for (const auto& p : g.get_graph())
-		if (!used[p.first])
-			dfs1(p.first);//dead on 10k
-	//for (const auto& p : g.get_graph())
-	//	if (!used[p.first]) {
-	//		used[p.first] = true;
-	//		for (int x : p.second)
-	//			if (!used[x])
-	//				dfs1(x);
-	//		order.push_back(p.first);
-
-	//		//dfs1(p.first);//dead on 10k
-	//	}
-
-
-	for (const auto& p : g.get_graph())
-		used[p.first] = false;
-
-	for (const auto& p : gr.get_graph())
-		used[p.first] = false;
-
-
-	std::reverse(order.begin(), order.end());
-	for (int v : order) {
-		if (!used[v]) {
-			dfs2(v);
-			if (component.size() > 1 || (g.has_arc(v, v) && gr.has_arc(v,v))) {
-				ans.push_back(component);
-			}
-			component.clear();
-		}
+	while (arcs > i)
+	{
+		a = rand() % nodes + 1;
+		b = rand() % nodes + 1;
+		g.add_arc(a, b);
+		i++;
 	}
-
-	return ans;
+	return g;
 }
 
-// функция обхода в глубину
-void dfs1(int v) {
-	used[v] = true;
-	std::map<int, std::set<int>> mem = (g.get_graph());
-	std::set<int> gv = mem[v];
-	//std::set<int> gv = (g.get_graph()).at(v);
+void measure(int nodes, int arcs) {
+	Graph g = gen_random_graph(nodes, arcs);
 
-	for (int x : gv)
-		if (!used[x])
-			dfs1(x);
-	order.push_back(v);
+	Timer t;
+
+	t.start();
+	const int repeats = 1;
+	for (int i = 0; i < repeats; i++) {
+		find_scc(g);
+	}
+	double sp_time = t.getTime() / repeats;
+
+	printf("%d\t%d\t%10.5f\n", nodes, arcs, sp_time);
 }
-
-// функция обхода в глубину по транспонированному графу и поиск КСС
-void dfs2(int v) {
-	used[v] = true;
-	component.push_back(v);
-
-	std::map<int, std::set<int>> mem = (gr.get_graph());
-	std::set<int> grv = mem[v];
-
-	for (int x : grv)
-		if (!used[x])
-			dfs2(x);
-}
-
 
 // функция для печати результата в файл
-void result_to_file(vector<vector<int>> ans, const char* chars){
+void result_to_file(vector<vector<int>> ans, const char* chars) {
 	ofstream fout(chars);
 
 	for (vector<int> p : ans) {
