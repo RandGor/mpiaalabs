@@ -11,6 +11,8 @@
 **/
 class Graph {
 public:
+	std::map<int, std::vector<int>> vertices;
+
 	/// Reads file and fills graph
 	void read_from_file(const char* chars);
 
@@ -37,10 +39,4 @@ public:
 
     /// Returns true if vertices exist and have an arc between them, false otherwise.
     bool has_arc(int start_vertex, int end_vertex) const;
-
-	/// Gives verticles
-	std::map<int, std::set<int>> get_graph() const;
-
-private:
-    std::map<int, std::set<int>> vertices;
 };

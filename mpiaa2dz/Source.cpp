@@ -17,12 +17,9 @@ int main(int argc, char* argv[])
 
 	// Time tests for large graphs
 	printf("Nodes\tEdges\tTime\n");
-	for (int i = 1; i <= 5; i++) {
+	for (int i = 1; i <= 5; i++)
 		for (int j = 1; j < 10; j++)
-		{
-			measure(pow(10, i)*j, pow(10, i)*j);
-		}
-	}
-
+			measure(pow(10, i)*j, 3*pow(10, i)*j);
+	_getch();
 	return 1;
 }

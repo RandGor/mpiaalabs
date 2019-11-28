@@ -1,5 +1,6 @@
 #pragma once
 #include "kosaraju.h"
+#include "timer.h"
 
 // граф и транспонированный граф
 Graph g, gr;
@@ -23,24 +24,20 @@ vector<vector<int>> find_scc(Graph graph) {
 	g = graph;
 	gr = graph.get_transponated();
 
-
-	for (const auto& p : g.get_graph())
+	for (const auto& p : g.vertices)
 		used[p.first] = false;
 
-	for (const auto& p : gr.get_graph())
+	for (const auto& p : gr.vertices)
 		used[p.first] = false;
 
-
-	for (const auto& p : g.get_graph())
+	for (const auto& p : g.vertices)
 		if (!used[p.first])
 			dfs1(p.first);
 
-
-
-	for (const auto& p : g.get_graph())
+	for (const auto& p : g.vertices)
 		used[p.first] = false;
 
-	for (const auto& p : gr.get_graph())
+	for (const auto& p : gr.vertices)
 		used[p.first] = false;
 
 	
@@ -59,10 +56,10 @@ vector<vector<int>> find_scc(Graph graph) {
 }
 
 // функция обхода в глубину
-inline void dfs1(int v) {
+void dfs1(int v) {
 	used[v] = true;
 
-	std::set<int> gv = (g.get_graph()).at(v);
+	std::vector<int> gv = g.vertices.at(v);
 
 	for (int x : gv)
 		if (!used[x])
@@ -71,11 +68,13 @@ inline void dfs1(int v) {
 }
 
 // функция обхода в глубину по транспонированному графу и поиск КСС
-inline void dfs2(int v) {
+void dfs2(int v) {
 	used[v] = true;
 	component.push_back(v);
 
-	std::set<int> grv = std::map<int, std::set<int>>(gr.get_graph())[v];
+	std::vector<int> grv = gr.vertices[v];
+
+	int grvs = grv.size();
 
 	for (int x : grv)
 		if (!used[x])

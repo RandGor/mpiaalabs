@@ -31,14 +31,14 @@ void Graph::clear(){
 
 void Graph::add_vertex(int vertex) {
     if (!has_vertex(vertex)) {
-        vertices[vertex] = std::set<int>();
+        vertices[vertex] = std::vector<int>();
     }
 }
 
 void Graph::add_arc(int start_vertex, int end_vertex) {
     add_vertex(start_vertex);
     add_vertex(end_vertex);
-    vertices[start_vertex].insert(end_vertex);
+	vertices[start_vertex].push_back(end_vertex);
 }
 
 
@@ -63,14 +63,13 @@ bool Graph::has_vertex(int vertex) const {
 }
 
 bool Graph::has_arc(int start_vertex, int end_vertex) const {
-    if (!has_vertex(start_vertex) || !has_vertex(end_vertex)) {
-        return false;
-    }
-    const auto it = vertices.find(start_vertex);
-    return (it->second.find(end_vertex) != it->second.end());
-}
 
+	if (!has_vertex(start_vertex) || !has_vertex(end_vertex))
+			return false;
 
-std::map<int, std::set<int>> Graph::get_graph() const {
-	return vertices;
+		for (int i = 0; i < vertices.at(start_vertex).size(); i++)
+			if (vertices.at(start_vertex)[i] == end_vertex)
+				return true;
+
+		return false;
 }

@@ -4,6 +4,8 @@
 #include "graph.h"
 #include "timer.h"
 #include "kosaraju.h"
+#include <algorithm>
+#include <set>
 #include <conio.h>
 
 using namespace std;
