@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include "catch.hpp"
 #include "graph.h"
@@ -14,5 +14,5 @@ Graph gen_random_graph(int nodes, int arcs);
 
 void measure(int nodes, int arcs);
 
-// функция для печати результата в файл
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РїРµС‡Р°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р»
 void result_to_file(vector<vector<int>> ans, const char* chars);

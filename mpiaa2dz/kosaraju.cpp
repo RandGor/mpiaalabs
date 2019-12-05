@@ -1,19 +1,19 @@
-#pragma once
+п»ї#pragma once
 #include "kosaraju.h"
 #include "timer.h"
 
-// граф и транспонированный граф
+// РіСЂР°С„ Рё С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅС‹Р№ РіСЂР°С„
 Graph g, gr;
 
 map<int, bool> used;
-// упорядоченный список и список КСС
+// СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹Р№ СЃРїРёСЃРѕРє Рё СЃРїРёСЃРѕРє РљРЎРЎ
 vector<int> order, component;
 
-// функция поиска КСС
+// С„СѓРЅРєС†РёСЏ РїРѕРёСЃРєР° РљРЎРЎ
 vector<vector<int>> find_scc(Graph graph) {
 	vector<vector<int>> ans;
 
-	// Рёбра
+	// Р С‘Р±СЂР°
 
 	used.clear();
 	g.clear();
@@ -55,7 +55,7 @@ vector<vector<int>> find_scc(Graph graph) {
 	return ans;
 }
 
-// функция обхода в глубину
+// С„СѓРЅРєС†РёСЏ РѕР±С…РѕРґР° РІ РіР»СѓР±РёРЅСѓ
 void dfs1(int v) {
 	used[v] = true;
 
@@ -67,7 +67,7 @@ void dfs1(int v) {
 	order.push_back(v);
 }
 
-// функция обхода в глубину по транспонированному графу и поиск КСС
+// С„СѓРЅРєС†РёСЏ РѕР±С…РѕРґР° РІ РіР»СѓР±РёРЅСѓ РїРѕ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅРѕРјСѓ РіСЂР°С„Сѓ Рё РїРѕРёСЃРє РљРЎРЎ
 void dfs2(int v) {
 	used[v] = true;
 	component.push_back(v);

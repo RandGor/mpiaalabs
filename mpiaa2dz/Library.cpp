@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include "Library.h"
 
@@ -35,7 +35,7 @@ void measure(int nodes, int arcs) {
 	printf("%d\t%d\t%10.5f\n", nodes, arcs, sp_time);
 }
 
-// функция для печати результата в файл
+// С„СѓРЅРєС†РёСЏ РґР»СЏ РїРµС‡Р°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С„Р°Р№Р»
 void result_to_file(vector<vector<int>> ans, const char* chars) {
 	ofstream fout(chars);
 
