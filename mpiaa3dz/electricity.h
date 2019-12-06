@@ -1,8 +1,12 @@
 ﻿#pragma once
 
 #include <vector>
+#include <algorithm>
 #include "graph.h"
 using namespace std;
 
-//find minimized combination of generators
-vector<int> electro(Graph g);
+/// euristic
+vector<int> gates_exp(int v, int e, int* stations, int** wires);
+
+/// brute
+vector<int> gates_brute(int v, int e, int* stations, int** wires);

@@ -6,6 +6,7 @@
 #include "electricity.h"
 #include <algorithm>
 #include <set>
+#include <map>
 #include <conio.h>
 
 using namespace std;

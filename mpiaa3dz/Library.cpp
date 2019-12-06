@@ -28,7 +28,7 @@ void measure(int nodes, int arcs) {
 	t.start();
 	const int repeats = 1;
 	for (int i = 0; i < repeats; i++) {
-		electro(g);
+		//gates_brute(g);
 	}
 	double sp_time = t.getTime() / repeats;
 
