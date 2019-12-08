@@ -2,46 +2,34 @@
 
 #include "Library.h"
 
-
-Graph gen_random_graph(int nodes, int arcs) {
-	Graph g;
-	int i = 0;
-	int a, b;
-	for (int i = 0; i < nodes; i++)
-		g.add_vertex(i);
-
-	while (arcs > i)
-	{
-		a = rand() % nodes + 1;
-		b = rand() % nodes + 1;
-		g.add_arc(a, b);
-		i++;
-	}
-	return g;
+vector<Wire> gen_random_wires(int n, int m) {
+	return {};
 }
 
 void measure(int nodes, int arcs) {
-	Graph g = gen_random_graph(nodes, arcs);
+	//Graph g = gen_random_graph(nodes, arcs);
 
-	Timer t;
+	//Timer t;
 
-	t.start();
-	const int repeats = 1;
-	for (int i = 0; i < repeats; i++) {
-		//gates_brute(g);
-	}
-	double sp_time = t.getTime() / repeats;
+	//t.start();
+	//const int repeats = 1;
+	//for (int i = 0; i < repeats; i++) {
+	//	//gates_brute(g);
+	//}
+	//double sp_time = t.getTime() / repeats;
 
-	printf("%d\t%d\t%10.5f\n", nodes, arcs, sp_time);
+	//printf("%d\t%d\t%10.5f\n", nodes, arcs, sp_time);
 }
 
 // функция для печати результата в файл
-void result_to_file(vector<int> ans, const char* chars) {
-	ofstream fout(chars);
-
-	for (int p : ans)
+void result_to_files(vector<int> greedy, vector<int> brute) {
+	ofstream fout;
+	fout.open("greedy.txt");
+	for (int p : greedy)
 		fout << p << " ";
-
-	fout << endl;
+	fout.close();
+	fout.open("brute.txt");
+	for (int p : brute)
+		fout << p << " ";
 	fout.close();
 }
