@@ -4,35 +4,21 @@
 
 int main(int argc, char* argv[])
 {
-	// Tests
 	Catch::Session().run(argc, argv);
-
 	int a, b;
 	int swap;
 
-	vector<Wire> wires;
+	vector<Wire> wires = read_from_file("input.txt");
 
-	ifstream in("input.txt");
-
-	while (in && !in.eof()) {
-		in >> a >> b;	
-		if (a > b)
-		{
-			swap = a;
-			a = b;
-			b = swap;
-		}
-		Wire buffer(a, b);
-		if (!isContains(wires,buffer))
-			wires.push_back(buffer);
-	}
-	in.close();
-
-	vector<int> greedy = gates_greedy(wires);
-	vector<int> bruted = gates_brute(wires);
+	vector<int> greedy = getcover_greedy(wires);
+	vector<int> bruted = getcover_brute(wires);
 	
 	result_to_files(greedy, bruted);
 
-	//_getch();
+	printf("Nodes\tEdges\tTime\n");
+	for (int i = 1; i <= 3; i++)
+		for (int j = 1; j < 10; j++)
+			measure_greedy(pow(10, i) * j, pow(10, i) * j);
+	_getch();
 	return 0;
 }

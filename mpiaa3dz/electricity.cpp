@@ -8,7 +8,7 @@ Wire::Wire(int A, int B) {
 
 bool isContains(vector<int> set, int node) {
 	for (int w : set)
-		if (w == node)
+		if (w == node) 
 			return true;
 	return false;
 }
@@ -22,7 +22,7 @@ bool isContains(vector<Wire> set, Wire node) {
 
 bool isCovers(vector<Wire> wires, vector<int> generators, vector<int> set) {
 	vector<int> lighted;
-	for (int p : set) {
+	for (int p : set)
 		for (Wire wire : wires)
 			if (wire.a == p || wire.b == p)
 			{
@@ -31,7 +31,7 @@ bool isCovers(vector<Wire> wires, vector<int> generators, vector<int> set) {
 				if (!isContains(lighted, wire.b))
 					lighted.push_back(wire.b);
 			}
-	}
+
 	sort(lighted.begin(), lighted.end());
 	sort(generators.begin(), generators.end());
 	return lighted == generators;
@@ -83,7 +83,7 @@ vector<int> getVertexes(vector<Wire> wires) {
 	return vertexes;
 }
 
-vector<int> gates_greedy(vector<Wire> wires) {
+vector<int> getcover_greedy(vector<Wire> wires) {
 	vector<int> ans;
 
 	vector<int> vertexes = getVertexes(wires);
@@ -93,9 +93,8 @@ vector<int> gates_greedy(vector<Wire> wires) {
 	for (int p : workset)
 		weight.push_back(vertexAdjCount(wires, p));
 
-	int vs = workset.size();;
+	int vs = workset.size();
 	int imax;
-
 	while (vs>0)
 	{
 		imax = 0;
@@ -113,7 +112,7 @@ vector<int> gates_greedy(vector<Wire> wires) {
 	return ans;
 }
 
-vector<int> gates_brute(vector<Wire> wires) {
+vector<int> getcover_brute(vector<Wire> wires) {
 	vector<int> ans;
 	vector<int> vertexes = getVertexes(wires);
 
@@ -121,6 +120,7 @@ vector<int> gates_brute(vector<Wire> wires) {
 	int ws = wires.size();
 
 	vector<vector<int>> combinations = { {} };
+
 	for (int i = 1; i <= vs; i++)
 	{
 		combinations = appendix(combinations, vertexes);
@@ -133,6 +133,5 @@ vector<int> gates_brute(vector<Wire> wires) {
 			}
 		}
 	}
-
 	return ans;
 }
