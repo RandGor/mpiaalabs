@@ -1,9 +1,0 @@
-﻿  UnitTest1.cpp
-D:\Users\dom2\source\repos\mpiaa1lab\mpiaa1lab\merge.h(119,20): warning C4018:  <: несоответствие типов со знаком и без знака
-D:\Users\dom2\source\repos\mpiaa1lab\UnitTest1\UnitTest1.cpp(25): message :  выполняется компиляция ссылки на экземпляр шаблон функции "bool isSorted<YEAR>(std::vector<Info,std::allocator<_Ty>>)"
-D:\Users\dom2\source\repos\mpiaa1lab\UnitTest1\UnitTest1.cpp(25): message :         with
-D:\Users\dom2\source\repos\mpiaa1lab\UnitTest1\UnitTest1.cpp(25): message :         [
-D:\Users\dom2\source\repos\mpiaa1lab\UnitTest1\UnitTest1.cpp(25): message :             _Ty=Info
-D:\Users\dom2\source\repos\mpiaa1lab\UnitTest1\UnitTest1.cpp(25): message :         ]
-     ╤ючфрхЄё  сшсышюЄхър D:\Users\dom2\source\repos\mpiaa1lab\Debug\UnitTest1.lib ш юс·хъЄ D:\Users\dom2\source\repos\mpiaa1lab\Debug\UnitTest1.exp
-  UnitTest1.vcxproj -> D:\Users\dom2\source\repos\mpiaa1lab\Debug\UnitTest1.dll
