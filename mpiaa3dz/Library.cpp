@@ -43,8 +43,16 @@ void measure_greedy(int nodes, int arcs) {
 		getcover_greedy(wires);
 		time += t.getTime();
 	}
-
 	printf("%d\t%d\t%10f\n", nodes, arcs, time / REPEATS);
+}
+
+void measure_accuracy(int nodes, int arcs) {
+	vector<Wire> wires = gen_random_wires(nodes, arcs);
+
+	vector<int> brute = getcover_brute(wires);
+	vector<int> greedy = getcover_greedy(wires);
+
+	printf("%d\t%d\t%d\t%d\n", nodes, arcs, brute.size(), greedy.size());
 }
 
 vector<Wire> read_from_file(const char* chars) {

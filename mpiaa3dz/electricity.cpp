@@ -128,7 +128,7 @@ vector<int> getcover_brute(vector<Wire> wires) {
 			if (isCovers(wires, vertexes, p))
 			{
 				ans = p;
-				i = vs;
+				i = vs+1;
 				break;
 			}
 		}

@@ -95,35 +95,35 @@ TEST_CASE("[Electricity] Test three stations two wires (greedy)", "[getcover_gre
 }
 
 TEST_CASE("[Electricity] Test three stations two wires (brute)", "[getcover_brute]") {
-	vector<Wire> wires{ {-1,1},{1,-7} };		//-1 - 1
-	vector<int> result = getcover_brute(wires);//   -7
+	vector<Wire> wires{ {-1,1},{1,-7} };
+	vector<int> result = getcover_brute(wires);
 	bool br = is_equal(result, { 1 });
 	CHECK(br);
 }
 
 TEST_CASE("[Electricity] Test three stations three wires, triangle (greedy)", "[getcover_greedy]") {
-	vector<Wire> wires{ {-1,1},{1,-7},{-7,-1} };//-7 - -1
-	vector<int> result = getcover_greedy(wires);// \ 1 /
+	vector<Wire> wires{ {-1,1},{1,-7},{-7,-1} };
+	vector<int> result = getcover_greedy(wires);
 	bool br = is_equal(result, { -1 }) || is_equal(result, { 1 }) || is_equal(result, { -7 });
 	CHECK(br);
 }
 
 TEST_CASE("[Electricity] Test three stations three wires, triangle (brute)", "[getcover_brute]") {
-	vector<Wire> wires{ {-1,1},{1,-7},{-7,-1} };//-7 - -1
-	vector<int> result = getcover_brute(wires);//  \ 1 /
+	vector<Wire> wires{ {-1,1},{1,-7},{-7,-1} };
+	vector<int> result = getcover_brute(wires);
 	bool br = is_equal(result, { -1 }) || is_equal(result, { 1 }) || is_equal(result, { -7 });
 	CHECK(br);
 }
 
 TEST_CASE("[Electricity] Test five stations four wires, flat (greedy) fail", "[getcover_greedy]") {
-	vector<Wire> wires{ {1,2},{2,3},{3,4},{4,5} };//1 - 2 - 3 - 4 - 5
+	vector<Wire> wires{ {1,2},{2,3},{3,4},{4,5} };
 	vector<int> result = getcover_greedy(wires);
 	bool br = is_equal(result, { 1,4 }) || is_equal(result, { 2,4 }) || is_equal(result, { 2,5 });
 	CHECK_FALSE(br);
 }
 
 TEST_CASE("[Electricity] Test five stations four wires, flat (brute)", "[getcover_brute]") {
-	vector<Wire> wires{ {1,2},{2,3},{3,4},{4,5} };//1 - 2 - 3 - 4 - 5
+	vector<Wire> wires{ {1,2},{2,3},{3,4},{4,5} };
 	vector<int> result = getcover_brute(wires);
 	bool br = is_equal(result, { 1,4 }) || is_equal(result, { 2,4 }) || is_equal(result, { 2,5 });
 	CHECK(br);

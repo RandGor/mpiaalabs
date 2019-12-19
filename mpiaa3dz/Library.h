@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#define REPEATS 5
+#define REPEATS 1
 
 #include "catch.hpp"
 #include "timer.h"
@@ -18,6 +18,9 @@ void measure_brute(int nodes, int arcs);
 
 // Measuring greedy algorithm test with given counts of nodes and arcs
 void measure_greedy(int nodes, int arcs);
+
+// Measuring accuracy of algorithms with given counts of nodes and arcs
+void measure_accuracy(int nodes, int arcs);
 
 // Reads given file and returns vector of wires
 vector<Wire> read_from_file(const char* chars);
